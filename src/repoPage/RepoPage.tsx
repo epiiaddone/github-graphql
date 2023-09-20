@@ -19,11 +19,11 @@ export function RepoPage() {
 
 
     const { data } = useQuery(
-    ['repo', searchCriteria],
-    () => getRepo(searchCriteria as SearchCriteria),
-    {
-    enabled: searchCriteria !== undefined,//when to run the query
-    }
+        ['repo', searchCriteria],
+        () => getRepo(searchCriteria as SearchCriteria),
+        {//query should not run on component mount
+        enabled: searchCriteria !== undefined,
+        }
     );
 
     const queryClient = useQueryClient();
@@ -33,13 +33,13 @@ export function RepoPage() {
  queryClient.setQueryData<RepoData>(
         ['repo', searchCriteria],
         (repo) => {
-        if (repo === undefined) {
-        return undefined;
-        }
-        return {
-        ...repo,
-        viewerHasStarred: true,
-        };
+            if (repo === undefined) {
+                return undefined;
+            }
+            return {
+                ...repo,
+                viewerHasStarred: true,
+            };
         }
         );
         }
@@ -52,7 +52,7 @@ export function RepoPage() {
 
         function handleStarClick() {
             if (data) {
-            mutate(data.repository.id);
+                mutate(data.repository.id);
             }
             }
 
@@ -62,14 +62,14 @@ export function RepoPage() {
             <SearchRepoForm onSearch={handleSearch} />
             {data && (
             <>
-            <FoundRepo
-            name={data.repository.name}
-            description={data.repository.description}
-            stars={data.repository.stargazers.totalCount}
-            />
-            {!data.repository.viewerHasStarred && (
-            <StarRepoButton onClick={handleStarClick} />
-            )}
+                <FoundRepo
+                    name={data.repository.name}
+                    description={data.repository.description}
+                    stars={data.repository.stargazers.totalCount}
+                />
+                {!data.repository.viewerHasStarred && (
+                <StarRepoButton onClick={handleStarClick} />
+                )}
             </>
             )}
             </main>
