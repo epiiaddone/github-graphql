@@ -9,8 +9,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    React Query Implementation:
     <App />
     <hr></hr>
-    <AppApollo/>
+    Apollo GraphQL Implementation:
+    <AppApollo />
   </React.StrictMode>
 );

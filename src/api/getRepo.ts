@@ -2,15 +2,15 @@ import { RepoData, SearchCriteria } from './types';
 
 export const GET_REPO = `
  query GetRepo($org: String!, $repo: String!) {
- repository(owner: $org, name: $repo) {
- id
- name
- description
- viewerHasStarred
- stargazers {
- totalCount
- }
- }
+  repository(owner: $org, name: $repo) {
+    id
+    name
+    description
+    viewerHasStarred
+    stargazers {
+      totalCount
+    }
+  }
  }
 `;
 

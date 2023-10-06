@@ -23,6 +23,7 @@ export function SearchRepoForm({ onSearch }: Props) {
         <input
           type="text"
           id="org"
+          placeholder="vuetifyjs"
           {...register('org', { required: 'You must enter a organization' })}
           className={getEditorStyle(errors.org)}
         />
@@ -33,6 +34,7 @@ export function SearchRepoForm({ onSearch }: Props) {
         <input
           type="text"
           id="repo"
+          placeholder="vuetify"
           {...register('repo', { required: 'You must enter a repository' })}
           className={getEditorStyle(errors.repo)}
         />
